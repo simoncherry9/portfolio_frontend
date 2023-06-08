@@ -6,9 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent {
+
+
   miInformacion = {
     nombre: 'Simón Cherry',
     edad: 22,
     ocupacion: 'Desarrollador web Full-Stack Junior'
   };
+
+
 }
