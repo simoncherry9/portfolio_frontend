@@ -1,18 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
+import { Comentarios } from '../interfaces/comentarios'
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PerfilService {
-    private jwtHelper: JwtHelperService;
+    private apiUrl = 'https://portfolio-final-api.fly.dev/api';
 
-    constructor() {
-        this.jwtHelper = new JwtHelperService();
+    constructor(private http: HttpClient) { }
+
+    getComentariosByUsername(): Observable<Comentarios[]> {
+        const token = localStorage.getItem('token');
+        const username = token ? this.getUserNameFromToken(token) : '';
+        const url = `${this.apiUrl}/comentarios/username/${username}`;
+        return this.http.get<Comentarios[]>(url);
     }
 
-    getUserNameFromToken(token: string): string {
-        const decodedToken = this.jwtHelper.decodeToken(token);
-        return decodedToken.username;
+    getUserNameFromToken(token: string | null): string {
+        if (token) {
+            try {
+                const decodedToken: any = jwt_decode(token);
+                return decodedToken.username;
+            } catch (error) {
+                console.error('Error al decodificar el token:', error);
+            }
+        }
+        return '';
     }
+
 }
+

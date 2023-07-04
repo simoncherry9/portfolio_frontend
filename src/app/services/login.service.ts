@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginData } from '../interfaces/login';
+import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,4 +34,17 @@ export class LoginService {
   isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
+
+  getUserNameFromToken(token: string): string {
+    try {
+      const decodedToken: any = jwt_decode(token);
+      return decodedToken.username;
+    } catch (error) {
+      console.log(token)
+      console.error('Error al decodificar el token', error);
+      return '';
+    }
+  }
+
 }
+
