@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { LoginData } from 'src/app/interfaces/login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   email = '';
   password = '';
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   login(): void {
     const loginData: LoginData = {
@@ -21,17 +22,19 @@ export class LoginComponent {
     };
 
     this.loginService.login(loginData).subscribe(
-      (response) => {
+      (response: any) => {
         // Guardar el token en el almacenamiento local
         const token = response.token;
-        this.loginService.saveToken(token);
+        localStorage.setItem('token', token);
 
         // Redirigir a la página principal o realizar otra acción
+        this.router.navigate(['/perfil']);
         console.log('Inicio de sesión exitoso');
       },
       (error) => {
         console.log('Error en el inicio de sesión', error);
       }
     );
+
   }
 }
