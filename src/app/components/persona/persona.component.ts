@@ -27,7 +27,6 @@ export class PersonaComponent implements OnInit {
   getComentarios() {
     this._comentariosService.getComentarios().subscribe(data => {
       this.listComentarios = data;
-      console.log(this.listComentarios);
     });
   }
 }
