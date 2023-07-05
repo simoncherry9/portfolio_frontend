@@ -1,5 +1,3 @@
-// register.component.ts
-
 import { Component } from '@angular/core';
 import { UserService } from '../../services/registar.service';
 import { User } from 'src/app/interfaces/user';
@@ -21,6 +19,12 @@ export class RegistarComponent {
 
   register(): void {
     this.isLoading = true; // Iniciar la carga
+
+    if (!this.validateEmail(this.email)) {
+      toastr.error('Por favor, introduce un email válido');
+      this.isLoading = false; // Finalizar la carga
+      return;
+    }
 
     const user: User = {
       username: this.username,
@@ -54,5 +58,10 @@ export class RegistarComponent {
         toastr.error('Error en el registro de usuario');
       }
     );
+  }
+
+  validateEmail(email: string): boolean {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
   }
 }

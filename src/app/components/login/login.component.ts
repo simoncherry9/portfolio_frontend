@@ -50,7 +50,6 @@ export class LoginComponent {
         toastr.success('Sesión iniciada');
       },
       (error) => {
-        toastr.error('Ocurrió un error interno, intentelo de nuevo mas tarde')
         this.isLoading = false; // Finalizar la carga
 
         toastr.options = {
