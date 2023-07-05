@@ -1,0 +1,17 @@
+.card {
+    z-index: -1;
+    margin-top: 50px;
+    border-radius: 30px;
+}
+
+.custom-card {
+    width: 500px;
+    height: 400px;
+}
+
+.spinner-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
