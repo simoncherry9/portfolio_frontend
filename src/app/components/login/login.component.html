@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
-<div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp">
+<div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp mt-5">
     <div class="card mb-3 text-bg-dark custom-card">
         <div class="row g-0">
             <div class="card-body position-relative" *ngIf="!isLoading">
                 <!-- Mostrar el formulario si isLoading es falso -->
                 <h2 class="text-center mt-3">Iniciar Sesión</h2>
                 <form (ngSubmit)="login()">
-                    <div>
+                    <div class="mb-3">
                         <label for="inputEmail" class="form-label mt-3">Email:</label>
                         <input type="email" [(ngModel)]="email" name="email" required id="inputEmail"
                             class="form-control" aria-labelledby="passwordHelpBlock"
                             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                             title="Por favor, introduce una dirección de correo electrónico válida">
                     </div>
-                    <div class="mt-3">
+                    <div class="mb-3">
                         <label for="inputPassword" class="form-label">Contraseña:</label>
                         <input type="password" [(ngModel)]="password" name="password" required id="inputPassword"
                             class="form-control" aria-labelledby="passwordHelpBlock">
