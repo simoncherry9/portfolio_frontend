@@ -18,6 +18,11 @@ export class LoginComponent {
   constructor(private loginService: LoginService, private router: Router) { }
 
   login(): void {
+    if (!this.isEmailValid(this.email)) {
+      toastr.error('Por favor, introduce un correo electrónico válido');
+      return;
+    }
+
     this.isLoading = true; // Iniciar la carga
 
     const loginData: LoginData = {
@@ -45,9 +50,24 @@ export class LoginComponent {
         toastr.success('Sesión iniciada');
       },
       (error) => {
-        console.log('Error en el inicio de sesión', error);
+        toastr.error('Ocurrió un error interno, intentelo de nuevo mas tarde')
+        this.isLoading = false; // Finalizar la carga
+
+        toastr.options = {
+          closeButton: true,
+          positionClass: 'toast-top-right',
+          timeOut: 3000
+        };
+
+        toastr.error('Usuario o contraseña incorrectos');
       }
     );
+  }
 
+  private isEmailValid(email: string): boolean {
+    // Expresión regular para verificar el formato del correo electrónico
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    return emailRegex.test(email);
   }
 }

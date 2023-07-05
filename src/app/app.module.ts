@@ -15,6 +15,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { AuthGuard } from '../../src/app/services/auth.service';
 import { LoginService } from './services/login.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { RegistarComponent } from './components/registar/registar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     PersonaComponent,
     LoginComponent,
     PerfilComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    RegistarComponent
   ],
   imports: [
     BrowserModule,
