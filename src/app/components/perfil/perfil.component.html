@@ -6,28 +6,21 @@
             <div class="text-center mt-3">
                 <h2>Bienvenido de nuevo {{ username }}</h2>
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
                     <div class="card-body">
                         <p class="card-text">Aquí aparecera la foto que hayas seleccionado de perfil al momento de
                             crearte la cuenta</p>
                     </div>
                 </div>
+                <h3 class="text-center mt-3">Tus comentarios:</h3>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let comentario of comentarios">
+                            <td colspan="2">{{ comentario.comentario }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-</div>
-<div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp"
-    style="margin-top: 50px;">
-    <div class="card mb-3 text-bg-dark" style="max-width: 1000px;">
-        <div class="row g-0">
-            <h3 class="text-center">Tus comentarios:</h3>
-            <table class="table">
-                <tbody>
-                    <tr *ngFor="let comentario of comentarios">
-                        <td colspan="2">{{ comentario.comentario }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <app-spinner class="text-center mb-5" *ngIf="isLoading"></app-spinner>
     </div>
 </div>

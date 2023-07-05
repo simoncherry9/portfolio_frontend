@@ -11,16 +11,18 @@ import { PersonaComponent } from './components/persona/persona.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { PerfilComponent } from './perfil/perfil.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 import { AuthGuard } from '../../src/app/services/auth.service';
 import { LoginService } from './services/login.service';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PersonaComponent,
     LoginComponent,
-    PerfilComponent
+    PerfilComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

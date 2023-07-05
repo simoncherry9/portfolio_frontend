@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PerfilService } from '../../app/services/perfil.service';
+import { PerfilService } from '../../services/perfil.service';
 import { Router } from '@angular/router';
-import { Comentarios } from '../interfaces/comentarios';
-import { LoginService } from '../services/login.service';
+import { Comentarios } from '../../interfaces/comentarios';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,6 +15,8 @@ export class PerfilComponent implements OnInit {
 
   constructor(private perfilService: PerfilService, private router: Router, private loginService: LoginService) { }
 
+  isLoading = true;
+
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('token');
     this.username = this.perfilService.getUserNameFromToken(token ?? '');
@@ -23,9 +25,10 @@ export class PerfilComponent implements OnInit {
       .subscribe(
         comentarios => {
           this.comentarios = comentarios;
-          console.log('Comentarios del usuario:', this.comentarios);
+          this.isLoading = false;
         },
         error => {
+          this.isLoading = false;
           console.error('Error al obtener los comentarios:', error);
         }
       );
