@@ -15,15 +15,6 @@ export class PerfilComponent implements OnInit {
 
   constructor(private perfilService: PerfilService, private router: Router, private loginService: LoginService) { }
 
-  logout(): void {
-    // Eliminar el token del almacenamiento local
-    localStorage.removeItem('token');
-
-    // Redirigir al componente de inicio de sesión u otra página
-    this.router.navigate(['/login']);
-    console.log('Sesión cerrada');
-  }
-
   ngOnInit(): void {
     const token: string | null = localStorage.getItem('token');
     this.username = this.perfilService.getUserNameFromToken(token ?? '');

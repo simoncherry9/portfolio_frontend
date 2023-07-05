@@ -3,6 +3,8 @@ import { PerfilService } from '../../services/perfil.service';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
+import toastr from 'toastr';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -19,7 +21,13 @@ export class NavbarComponent implements OnInit {
 
     // Redirigir al componente de inicio de sesión u otra página
     this.router.navigate(['/login']);
-    console.log('Sesión cerrada');
+    toastr.options = {
+      closeButton: true,
+      positionClass: 'toast-top-right',
+      timeOut: 3000
+    };
+
+    toastr.error('Sesión cerrada');
   }
 
   menuVariable: boolean = false;

@@ -1,8 +1,9 @@
-// login.component.ts
 import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { LoginData } from 'src/app/interfaces/login';
 import { Router } from '@angular/router';
+
+import toastr from 'toastr';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,14 @@ export class LoginComponent {
 
         // Redirigir a la página principal o realizar otra acción
         this.router.navigate(['/perfil']);
-        console.log('Inicio de sesión exitoso');
+
+        toastr.options = {
+          closeButton: true,
+          positionClass: 'toast-top-right',
+          timeOut: 3000
+        };
+
+        toastr.success('Sesión iniciada');
       },
       (error) => {
         console.log('Error en el inicio de sesión', error);
