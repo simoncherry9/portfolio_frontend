@@ -9,9 +9,9 @@ import { AuthGuard } from '../../src/app/services/auth.service';
 const routes: Routes = [
 
   { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
-  { path: 'portfolio', component: PersonaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
+  { path: 'portfolio', component: PersonaComponent },
 
 ];
 

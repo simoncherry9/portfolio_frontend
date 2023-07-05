@@ -24,9 +24,13 @@ export class PersonaComponent implements OnInit {
   ngOnInit() {
     this.getComentarios();
   }
+
+  isLoading = true;
+
   getComentarios() {
     this._comentariosService.getComentarios().subscribe(data => {
       this.listComentarios = data;
+      this.isLoading = false;
     });
   }
 }

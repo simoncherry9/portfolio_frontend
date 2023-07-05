@@ -13,10 +13,13 @@ import toastr from 'toastr';
 export class LoginComponent {
   email = '';
   password = '';
+  isLoading = false; // Variable para controlar la carga
 
   constructor(private loginService: LoginService, private router: Router) { }
 
   login(): void {
+    this.isLoading = true; // Iniciar la carga
+
     const loginData: LoginData = {
       email: this.email,
       password: this.password
@@ -36,6 +39,8 @@ export class LoginComponent {
           positionClass: 'toast-top-right',
           timeOut: 3000
         };
+
+        this.isLoading = false; // Finalizar la carga
 
         toastr.success('Sesión iniciada');
       },

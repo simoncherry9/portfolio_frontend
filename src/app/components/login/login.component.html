@@ -1,7 +1,8 @@
 <div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp">
     <div class="card mb-3 text-bg-dark custom-card">
         <div class="row g-0">
-            <div class="card-body">
+            <div class="card-body position-relative" *ngIf="!isLoading">
+                <!-- Mostrar el formulario si isLoading es falso -->
                 <h2 class="text-center mt-3">Iniciar Sesión</h2>
                 <form (ngSubmit)="login()">
                     <div>
@@ -24,6 +25,12 @@
                         </p>
                     </div>
                 </form>
+            </div>
+            <div class="spinner-container d-flex justify-content-center align-items-center" *ngIf="isLoading">
+                <!-- Mostrar el spinner si isLoading es verdadero -->
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
         </div>
     </div>
