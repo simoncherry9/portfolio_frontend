@@ -23,6 +23,11 @@ export class LoginComponent {
       return;
     }
 
+    if (this.checkFields()) {
+      toastr.error('Por favor, completa todos los campos');
+      return;
+    }
+
     this.isLoading = true; // Iniciar la carga
 
     const loginData: LoginData = {
@@ -68,5 +73,9 @@ export class LoginComponent {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     return emailRegex.test(email);
+  }
+
+  private checkFields(): boolean {
+    return this.email.trim() === '' || this.password.trim() === '';
   }
 }

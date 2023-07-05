@@ -18,13 +18,17 @@ export class RegistarComponent {
   constructor(private userService: UserService) { }
 
   register(): void {
-    this.isLoading = true; // Iniciar la carga
+    if (this.checkFields()) {
+      toastr.error('Por favor, completa todos los campos');
+      return;
+    }
 
     if (!this.validateEmail(this.email)) {
       toastr.error('Por favor, introduce un email válido');
-      this.isLoading = false; // Finalizar la carga
       return;
     }
+
+    this.isLoading = true; // Iniciar la carga
 
     const user: User = {
       username: this.username,
@@ -60,8 +64,12 @@ export class RegistarComponent {
     );
   }
 
-  validateEmail(email: string): boolean {
+  private validateEmail(email: string): boolean {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+  }
+
+  private checkFields(): boolean {
+    return this.username.trim() === '' || this.password.trim() === '' || this.email.trim() === '';
   }
 }
