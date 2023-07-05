@@ -27,11 +27,29 @@
                     <a class="nav-link active">Contacto</a>
                 </li>
             </ul>
-            <ul>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Usuario Logueado</a>
-                </li>
-            </ul>
+            <div class="ms-auto">
+                <ng-container *ngIf="username; else loginButton">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{username}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-center">
+                        <li *ngIf="!isCurrentRoute('/perfil')"><a class="dropdown-item" routerLink="/perfil">Perfil</a>
+                        </li>
+                        <button class="btn btn-danger" (click)="logout()"><i class="bi bi-box-arrow-left"></i></button>
+                    </ul>
+                </ng-container>
+                <ng-template #loginButton>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" routerLink="/login">Iniciar sesión</a></li>
+                        <li><a class="dropdown-item" routerLink="/registrarse">Registrarse</a></li>
+                    </ul>
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                </ng-template>
+            </div>
         </div>
     </div>
 </nav>

@@ -4,6 +4,10 @@ header {
     font-family: 'Montserrat', sans-serif;
 }
 
+.navbar {
+    z-index: 1;
+}
+
 .menu {
     margin-top: 12px;
 }
