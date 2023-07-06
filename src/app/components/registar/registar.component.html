@@ -2,8 +2,8 @@
 <div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp mt-5">
     <div class="card mb-3 text-bg-dark custom-card">
         <div class="row g-0">
-            <div class="card-body position-relative" *ngIf="!isLoading">
-                <!-- Mostrar el formulario si isLoading es falso -->
+            <div class="card-body position-relative" *ngIf="!isLoading && !isRegistered">
+                <!-- Mostrar el formulario si isLoading y isRegistered son falsos -->
                 <h2 class="text-center mt-3">Registrarme</h2>
                 <form (ngSubmit)="register()">
                     <div class="mb-3">
@@ -30,6 +30,18 @@
                 <!-- Mostrar el spinner si isLoading es verdadero -->
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <div class="success-message d-flex flex-column align-items-center justify-content-center"
+                *ngIf="isRegistered">
+                <!-- Mostrar el mensaje de éxito si isRegistered es verdadero -->
+                <h2 class="text-center mt-3">La cuenta fue creada con éxito</h2>
+                <div class="text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                        class="bi bi-check-circle-fill custom-icon" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </svg>
                 </div>
             </div>
         </div>

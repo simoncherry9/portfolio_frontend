@@ -14,6 +14,7 @@ export class RegistarComponent {
   password = '';
   email = '';
   isLoading = false; // Variable para controlar la carga
+  isRegistered = false; // Variable para controlar el registro exitoso
 
   constructor(private userService: UserService) { }
 
@@ -40,6 +41,7 @@ export class RegistarComponent {
       (response: any) => {
         // Registro exitoso
         this.isLoading = false; // Finalizar la carga
+        this.isRegistered = true; // Establecer registro exitoso
 
         toastr.options = {
           closeButton: true,
@@ -53,13 +55,11 @@ export class RegistarComponent {
         console.log('Error en el registro de usuario', error);
         this.isLoading = false; // Finalizar la carga
 
-        toastr.options = {
-          closeButton: true,
-          positionClass: 'toast-top-right',
-          timeOut: 3000
-        };
-
-        toastr.error('Error en el registro de usuario');
+        if (error.status === 409) {
+          toastr.error('El correo electrónico o el nombre de usuario ya están en uso');
+        } else {
+          toastr.error('Error en el registro de usuario');
+        }
       }
     );
   }
