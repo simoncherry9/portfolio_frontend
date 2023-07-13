@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoginData } from '../interfaces/login';
+import { LoginData, ResetPasswordData } from '../interfaces/login';
 import jwt_decode from 'jwt-decode';
 
 
@@ -44,6 +44,11 @@ export class LoginService {
       console.error('Error al decodificar el token', error);
       return '';
     }
+  }
+
+  resetPassword(email: string): Observable<any> {
+    const resetPasswordData: ResetPasswordData = { email };
+    return this.http.post('https://portfolio-final-api.fly.dev/api/forgot-password', resetPasswordData);
   }
 
 }

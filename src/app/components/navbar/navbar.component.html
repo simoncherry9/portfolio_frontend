@@ -36,7 +36,10 @@
                     <ul class="dropdown-menu dropdown-menu-end text-center">
                         <li *ngIf="!isCurrentRoute('/perfil')"><a class="dropdown-item" routerLink="/perfil">Perfil</a>
                         </li>
-                        <button class="btn btn-danger" (click)="logout()"><i class="bi bi-box-arrow-left"></i></button>
+                        <button class="dropdown-item btn btn-primary" routerLink="/editar"><i
+                                class="bi bi-pencil"></i></button>
+                        <button class="dropdown-item btn btn-danger" (click)="logout()"><i
+                                class="bi bi-box-arrow-left"></i></button>
                     </ul>
                 </ng-container>
                 <ng-template #loginButton>

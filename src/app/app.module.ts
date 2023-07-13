@@ -16,6 +16,8 @@ import { AuthGuard } from '../../src/app/services/auth.service';
 import { LoginService } from './services/login.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { RegistarComponent } from './components/registar/registar.component';
+import { RecuperarComponent } from './components/recuperar/recuperar.component';
+import { EditarComponent } from './components/editar/editar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { RegistarComponent } from './components/registar/registar.component';
     LoginComponent,
     PerfilComponent,
     SpinnerComponent,
-    RegistarComponent
+    RegistarComponent,
+    RecuperarComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,
